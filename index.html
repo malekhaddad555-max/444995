@@ -3,322 +3,224 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE COCO REPORT — Household Air Quality Crisis</title>
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Operation: Fresh Breath for Coco</title>
     <style>
         :root {
-            --bg: #05070d;
-            --glass: rgba(255, 255, 255, 0.03);
-            --glass-hover: rgba(255, 255, 255, 0.06);
-            --border: rgba(255, 255, 255, 0.09);
-            --gold: #f59e0b;
-            --cyan: #22d3ee;
-            --rose: #fb7185;
-            --emerald: #34d399;
-            --text: #f8fafc;
-            --muted: #94a3b8;
+            --stink-green: #6b8e23;
+            --slime-green: #9acd32;
+            --mint-fresh: #2ec4b6;
+            --mint-light: #cbf3f0;
+            --dark-bg: #1e241b;
+            --card-bg: #ffffff;
         }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            overflow-x: hidden;
-            line-height: 1.65;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f2;
+            color: #333;
+            transition: background-color 0.5s ease;
         }
 
-        /* Ambient Glowing Background Orbs */
-        .orb {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(110px);
-            z-index: -1;
-            opacity: 0.45;
-            animation: float 12s infinite alternate ease-in-out;
-        }
-        .orb-1 { width: 420px; height: 420px; background: #0ea5e9; top: -100px; left: -100px; }
-        .orb-2 { width: 380px; height: 380px; background: #e11d48; bottom: 10%; right: -80px; animation-delay: -4s; }
-        .orb-3 { width: 300px; height: 300px; background: #10b981; top: 45%; left: 30%; opacity: 0.25; animation-delay: -8s; }
-
-        @keyframes float {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(35px, 45px) scale(1.1); }
-        }
-
-        /* Top Ticker Bar */
-        .ticker {
-            background: rgba(251, 113, 133, 0.12);
-            border-bottom: 1px solid rgba(251, 113, 133, 0.25);
-            padding: 10px 20px;
+        header {
+            background: linear-gradient(135deg, var(--stink-green), #4a6316);
+            color: white;
             text-align: center;
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--rose);
-            backdrop-filter: blur(12px);
+            padding: 3rem 1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: background 0.5s ease;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.8rem;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+            opacity: 0.9;
         }
 
         .container {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 60px 24px 80px;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
         }
 
-        /* Editorial Hero */
-        header {
-            text-align: center;
-            margin-bottom: 70px;
+        .card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
         }
 
-        .eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 18px;
-            border-radius: 999px;
-            background: var(--glass);
-            border: 1px solid var(--border);
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--cyan);
-            margin-bottom: 24px;
+        h2 {
+            color: var(--stink-green);
+            margin-top: 0;
+            transition: color 0.5s ease;
         }
 
-        h1 {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: clamp(2.8rem, 6.5vw, 4.8rem);
-            font-weight: 900;
-            line-height: 1.08;
-            letter-spacing: -1px;
-            margin-bottom: 24px;
-            background: linear-gradient(135deg, #ffffff 25%, #cbd5e1 65%, #38bdf8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        h1 em {
-            font-style: italic;
-            background: linear-gradient(135deg, #fb7185, #f59e0b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .lead {
-            font-size: 1.2rem;
-            color: var(--muted);
-            max-width: 660px;
-            margin: 0 auto;
-        }
-
-        /* Luxury Glass Panel */
-        .glass-panel {
-            background: var(--glass);
-            border: 1px solid var(--border);
-            border-radius: 28px;
-            padding: 42px;
-            backdrop-filter: blur(20px);
-            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.6);
-            margin-bottom: 45px;
-        }
-
-        /* Interactive Distance Simulator */
-        .sim-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-bottom: 24px;
-        }
-
-        .sim-header h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-        }
-
-        .status-pill {
-            padding: 6px 14px;
-            border-radius: 999px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            background: rgba(251, 113, 133, 0.15);
-            color: var(--rose);
-            border: 1px solid rgba(251, 113, 133, 0.35);
-        }
-
-        input[type="range"] {
+        /* Stink-O-Meter */
+        .meter-container {
+            background: #e0e0e0;
+            border-radius: 25px;
+            height: 30px;
             width: 100%;
-            accent-color: var(--cyan);
-            height: 8px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-            cursor: pointer;
-            margin: 18px 0;
-        }
-
-        .sim-readout {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.35);
-            padding: 20px 24px;
-            border-radius: 16px;
-            border: 1px solid var(--border);
-            margin-top: 10px;
-        }
-
-        .sim-distance { font-size: 1.5rem; font-weight: 700; color: var(--cyan); }
-        .sim-effect { color: var(--muted); font-size: 1rem; max-width: 65%; text-align: right; }
-
-        /* 3-Column Feature Bento Grid */
-        .bento {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 22px;
-            margin-bottom: 45px;
-        }
-
-        .bento-card {
-            background: var(--glass);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 32px;
-            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-            position: relative;
             overflow: hidden;
+            margin: 1rem 0;
         }
 
-        .bento-card:hover {
-            transform: translateY(-6px);
-            background: var(--glass-hover);
-            border-color: rgba(56, 189, 248, 0.4);
+        .meter-fill {
+            background: linear-gradient(90deg, var(--slime-green), #d9534f);
+            height: 100%;
+            width: 98%;
+            text-align: right;
+            padding-right: 15px;
+            line-height: 30px;
+            color: white;
+            font-weight: bold;
+            transition: width 0.5s ease, background 0.5s ease;
         }
 
-        .card-num {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.4rem;
-            font-weight: 900;
-            color: rgba(255, 255, 255, 0.12);
-            margin-bottom: 12px;
-        }
-
-        .bento-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 10px;
-            color: #fff;
-        }
-
-        .bento-card p {
-            color: var(--muted);
-            font-size: 0.96rem;
-        }
-
-        /* Protocol Section */
-        .protocol-title {
-            text-align: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-        }
-
-        .protocol-sub {
-            text-align: center;
-            color: var(--muted);
-            margin-bottom: 32px;
-        }
-
-        .checklist {
-            display: grid;
-            gap: 14px;
-            max-width: 620px;
-            margin: 0 auto 32px;
-        }
-
-        .check-item {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border);
-            padding: 16px 22px;
-            border-radius: 16px;
-        }
-
-        .check-badge {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: rgba(34, 211, 238, 0.15);
-            color: var(--cyan);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            flex-shrink: 0;
-        }
-
-        .cta-wrap { text-align: center; }
-
-        .luxury-btn {
-            background: linear-gradient(135deg, #38bdf8, #818cf8);
-            color: #05070d;
+        /* Interactive Mint Button */
+        .btn-mint {
+            background-color: var(--mint-fresh);
+            color: white;
             border: none;
-            padding: 18px 38px;
-            font-size: 1.05rem;
-            font-weight: 700;
-            border-radius: 999px;
-            cursor: pointer;
-            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.35);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .luxury-btn:hover {
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(56, 189, 248, 0.5);
-        }
-
-        #pledge-result {
-            margin-top: 22px;
+            padding: 15px 30px;
             font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--emerald);
-            min-height: 28px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            display: block;
+            margin: 1.5rem auto 0;
+            box-shadow: 0 4px 10px rgba(46, 196, 182, 0.3);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .btn-mint:hover {
+            transform: scale(1.05);
+            background-color: #25a195;
+        }
+
+        .btn-mint:active {
+            transform: scale(0.98);
+        }
+
+        /* Checklist */
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            background: #f9fbf8;
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border-left: 5px solid var(--mint-fresh);
+            font-size: 1.05rem;
         }
 
         footer {
             text-align: center;
-            color: var(--muted);
-            font-size: 0.85rem;
-            opacity: 0.6;
-            padding-top: 20px;
-            border-top: 1px solid var(--border);
+            padding: 2rem;
+            color: #777;
+            font-size: 0.9rem;
         }
 
-        @media (max-width: 600px) {
-            .glass-panel { padding: 26px 20px; }
-            .sim-readout { flex-direction: column; text-align: center; gap: 8px; }
-            .sim-effect { max-width: 100%; text-align: center; }
+        /* Fresh Mode Theme (Activated by JS) */
+        body.fresh-mode {
+            background-color: var(--mint-light);
+        }
+        body.fresh-mode header {
+            background: linear-gradient(135deg, var(--mint-fresh), #1b9aaa);
+        }
+        body.fresh-mode h2 {
+            color: var(--mint-fresh);
         }
     </style>
 </head>
 <body>
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
 
-    <div class="ticker">
-        ⚠️ Official Household Advisory • Severe Olfactory Event Detected Across All Rooms
-    </div>
+    <header id="main-header">
+        <h1>🤢 Public Service Announcement: Coco's Breath</h1>
+        <p>An urgent intervention for better, fresher breaths.</p>
+    </header>
 
     <div class="container">
-        <header>
-            <div class="eyebrow">✦ Special Investigation • fixyourbrotherbreath.com</div>
-            <h1>Why Coco Must <em>Immediately</em> Fix His Breath.</h1>
-            <p class="lead">
+        
+        <!-- Stink Level Card -->
+        <div class="card">
+            <h2>🚨 Current Air Quality Hazard</h2>
+            <p>Scientists (and everyone sitting within 10 feet of Coco) have detected dangerously high levels of stinky breath. When Coco breathes, nearby houseplants wilt and paint peels off the walls.</p>
+            
+            <strong>Coco's Current Stink-O-Meter:</strong>
+            <div class="meter-container">
+                <div class="meter-fill" id="stink-bar">98% TOXIC</div>
+            </div>
+            <p id="status-text"><em>Status: Hazmat suit required for conversation.</em></p>
+
+            <button class="btn-mint" onclick="giveMint()">🌿 Toss Coco a Mega-Mint!</button>
+        </div>
+
+        <!-- Action Plan Card -->
+        <div class="card">
+            <h2>🪥 How Coco Can Take Better Breaths</h2>
+            <p>It's not too late for Coco to turn things around. Here is the official 4-step recovery plan:</p>
+            <ul class="checklist">
+                <li><strong>Step 1: Brush Thoroughly</strong> – Two full minutes, twice a day. Don't forget the tongue!</li>
+                <li><strong>Step 2: Drink More Water</strong> – Dry mouth is a breeding ground for stink monsters.</li>
+                <li><strong>Step 3: Embrace the Mint</strong> – Keep emergency breath mints or dental chews on standby at all times.</li>
+                <li><strong>Step 4: Deep, Fresh Breaths</strong> – Inhale confidence, exhale minty freshness (not garbage).</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <footer>
+        Made with love (and a clothespin on our noses) for Coco.
+    </footer>
+
+    <script>
+        let stinkLevel = 98;
+
+        function giveMint() {
+            const bar = document.getElementById('stink-bar');
+            const statusText = document.getElementById('status-text');
+            const headerTitle = document.querySelector('#main-header h1');
+
+            if (stinkLevel > 20) {
+                stinkLevel -= 26;
+                if (stinkLevel < 0) stinkLevel = 0;
+
+                bar.style.width = stinkLevel + '%';
+                bar.textContent = stinkLevel + '% STINKY';
+
+                if (stinkLevel > 50) {
+                    statusText.innerHTML = "<em>Status: Slightly better, keep feeding mints!</em>";
+                } else if (stinkLevel > 0) {
+                    statusText.innerHTML = "<em>Status: Getting breathable! Almost there...</em>";
+                    bar.style.background = "#f0ad4e";
+                }
+            } 
+            
+            if (stinkLevel <= 20) {
+                stinkLevel = 0;
+                bar.style.width = '100%';
+                bar.style.background = '#2ec4b6';
+                bar.textContent = '100% MINTY FRESH ✨';
+                statusText.innerHTML = "<strong>Status: MIRACLE ACHIEVED! Coco's breath is officially safe!</strong>";
+                headerTitle.textContent = "✨ Celebration: Coco Has Fresh Breath!";
+                document.body.classList.add('fresh-mode');
+            }
+        }
+    </script>
+
+</body>
+</html>
+
